@@ -19,11 +19,11 @@ So back in the dark ages of my career, pre-2006, I spent a long time coding Java
 
 In Java an Interface is a basically a blueprint of methods that the class who implements the Interface needs to implement. For example:
 
-[gist id=814920]
+<script src="https://gist.github.com/814920.js"> </script>
 
 Here we have a <code>Bicycle</code> Interface that says there are three methods that need to be implemented. It is then the responsibility of the <code>ACMEBicycle</code> class to implement those methods. Now, an Abstract Class in Java is similar to an Interface in that it too is a blueprint of methods that the extending class may or may not need to implement. There in lies one of the differences between the two. Let's take a look at the same example, but this time we want to implement the same behavior of all of our extending classes for the <code>applyBrakes</code> method:
 
-[gist id=814926]
+<script src="https://gist.github.com/814926.js"> </script>
 
 An Abstract Class is a great way to provide a mix of fully implemented methods as well as providing subclasses with a mixture of methods that need to be implemented by the extending class.
 
@@ -35,13 +35,13 @@ Unfortunately, or fortunately depending on how you look at it (I see it as a mix
 
 Here is one implementation on we can gain a bit of that functionality back in Ruby:
 
-[gist id=815110]
+<script src="https://gist.github.com/815110.js"> </script>
 
 What we've done here is to inject a Module into our <code>Bicycle</code> class to give it a nice error it can raise and a little bit of help building a nice error message for the user. Then in our <code>Bicycle</code> class we define all the methods we want and in the ones we need the end user to define we can call the <code>api_not_implemented</code> method and it will raise the <code>AbstractInterface::InterfaceNotImplementedError</code> error for us.
 
 We could simplify this a bit by having a nice little helper macro that we can use to build these methods, like this:
 
-[gist id=815133]
+<script src="https://gist.github.com/815133.js"> </script>
 
 That approach certainly makes our code look a bit cleaner, I'm not denying that, however it has one really big flaw, at least for me anyway, it doesn't give us a good to place to hang our documentation hat. In the previous approach we had actual methods that we could then document and that documentation would then show up in RDoc when it's outputted. With the latter approach, however, we can document the hell out of the <code>needs_implementation</code> calls we have in the <code>Bicycle</code> class, but they won't ever show up in the documentation. That means that users of our library have to crack open the actual code itself to see what it they are expected to implement.
 

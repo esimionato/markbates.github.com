@@ -16,7 +16,7 @@ meta:
   _edit_last: '1'
   aktt_notify_twitter: 'no'
 ---
-<blockquote><img class="alignright" title="mario" src="http://www.divanikkiz.com/site/images/stories/mlss_mario-hammer.jpg" alt="" width="255" height="282" />"Testing is painful."</blockquote>
+<blockquote><img style="float: right; padding-left: 10px" title="mario" src="http://www.divanikkiz.com/site/images/stories/mlss_mario-hammer.jpg" alt="" width="255" height="282" />"Testing is painful."</blockquote>
 <blockquote>"Testing is hard."</blockquote>
 <blockquote>"Testing is complicated."</blockquote>
 <blockquote>"Testing is not fun."</blockquote>
@@ -28,7 +28,7 @@ In the Ruby community there is a big push to use a testing framework called, <a 
 
 Let me give you an example of a Cucumber script:
 
-[gist id=854764]
+<script src="https://gist.github.com/854764.js"> </script>
 
 That script tests the user registration flow through an application in a couple of different ways, first through 'standard' registration, and then through being invited to join. Now, the beauty of Cucumber is that these scripts are 'human' readable. Your product manager, or other stake holders, should be able to write these scripts themselves, and you, the developer, should be able to just plug them in and code until those scripts pass.
 

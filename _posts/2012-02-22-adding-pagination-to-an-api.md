@@ -17,7 +17,7 @@ meta:
   _edit_last: '1'
   aktt_tweeted: '1'
 ---
-<img alt="" src="http://www.robertsabuda.com/store/images/sharks_shark.jpg" title="popup book" class="alignleft" width="250" /><em>Before I start this article, let me apologize for the lack of writing over the last six months. My only excuse is that I've been working on a new book and that is where all my writing energy has gone. So with apologies out of the way, let's talk pagination.</em>
+<img alt="" src="http://www.robertsabuda.com/store/images/sharks_shark.jpg" title="popup book" style="float: left; padding-right: 10px" width="250" /><em>Before I start this article, let me apologize for the lack of writing over the last six months. My only excuse is that I've been working on a new book and that is where all my writing energy has gone. So with apologies out of the way, let's talk pagination.</em>
 
 Dealing with pagination in any application is never easy. There are a lot of great libraries out there that help you better handle this awkward, but unavoidable part of application programming. Things get even more complicated when you are trying to define an API.
 

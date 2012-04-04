@@ -21,7 +21,7 @@ Last week I received an email from someone who used to work at a company that I 
 
 What kind of advice was he asking for, well, he quite simply needed to know how could he become an 'expert' Ruby on Rails developer. First, let me say that this post won't have anything to do with Ruby, Rails, or any other specific programming language. Everything I'll talk about is valid in ANY language on ANY platform. With that disclaimer, let's move on, shall we?
 
-<img class="alignleft" title="Monkey" src="http://herd.typepad.com/.a/6a00d83451e1dc69e2010536ad3deb970b-800wi" alt="" width="250" />
+<img style="float: left; padding-right: 10px" title="Monkey" src="http://herd.typepad.com/.a/6a00d83451e1dc69e2010536ad3deb970b-800wi" alt="" width="250" />
 
 While at this company he got introduced to Ruby on Rails and really loved it, coming from a non-Rails background. Since being laid off he's been trying to land another Rails gig, but everyone is looking for 'expert' Rails developers. So the question was, how to become an 'expert' developer?
 

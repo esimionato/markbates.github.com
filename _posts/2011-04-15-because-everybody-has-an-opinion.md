@@ -23,7 +23,7 @@ In case you've been living in a cave this week you've probably heard that <a hre
 
 I would like to start by addressing my experiences with CoffeeScript. My opinion of it is of ambivalence. I've used it on a project, I've played with and in the end I've come out with the opinion of "it's ok". It didn't blow me away, but at the same time I can see why so many people like. It offers some really cool features that I really wish JavaScript had and you can cut down on the amount of code you have to write. On the other hand the apps I tend to write don't tend to be that JavaScript heavy that I really needed to reach out for something like CoffeeScript.
 
-<img class="alignleft" src="http://blogs.worldbank.org/files/publicsphere/public%20opinion_JGRNLY.jpeg" alt="" width="326" height="246" />So, how do I feel about CoffeeScript being included with Rails? Well, I'll get to that. Let's go over some of the most common arguments I've heard from people this week about why they're anti-CoffeeScript in Rails.
+<img style="float: left; padding-right: 10px" src="http://blogs.worldbank.org/files/publicsphere/public%20opinion_JGRNLY.jpeg" alt="" width="326" height="246" />So, how do I feel about CoffeeScript being included with Rails? Well, I'll get to that. Let's go over some of the most common arguments I've heard from people this week about why they're anti-CoffeeScript in Rails.
 <blockquote>"It's an abstraction layer of JavaScript! JavaScript isn't that bad, why can't you just write JavaScript?"
 
 "It's going to be a hinderance to newbies. It'll be too much of a learning curve!"</blockquote>
