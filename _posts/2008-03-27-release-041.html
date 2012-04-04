@@ -1,0 +1,60 @@
+---
+layout: post
+title: Release 0.4.1
+tags:
+- assigns
+- cookie
+- git
+- mack
+- News
+- rails
+- release
+- Releases
+- session
+- testing
+- Updates
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+---
+On the heels of yesterdays release of 0.4.0, there is a new release today, 0.4.1. Although this is not a <em>sexy</em> release, as 0.4.0 was, this is an important release.
+
+What makes this release so important is that it fixes, adds, or improves testing support for Mack applications.
+
+The implementation of some of the testing stuff has changed under the covers, but it's the new stuff that is really important. let's take a look at some of the stuff:
+<ul>
+	<li><strong>assigns(key)</strong> - This one should be familiar to all you Rails folks out there. This allows you to get an instance variable that was set in a controller, and access it in your test.
+<pre>def test_something
+  get foo_index_url
+  assert_not_nil assigns(:foo_list)
+end</pre>
+</li>
+	<li><strong>in_session</strong> - This methods allows you to wrap a block in the context of a session. This is great if you're trying to do integration testing.</li>
+	<li><strong>set_cookie, remove_cookie</strong> - These methods allow you to either set or a remove a cookie in your tests. Great if you want to test an action that reads a cookie, or test to see what happens if you set a cookie, then remove the cookie and call something else. Also great to use with the in_session method.</li>
+</ul>
+There are a few other hidden treats in there, but those are some of the highlights. These things help bring Mack testing to a usable level.
+
+The Mack Demo Blog application has been updated to demonstrate some these things. You can pull the demo using Git here: <a href="git://github.com/markbates/mack_blog_demo.git" target="_blank">git://github.com/markbates/mack_blog_demo.git</a>
+
+Changelog:
+<ul>
+	<li>Improved testing support.</li>
+</ul>
+<ul>
+	<li>Added assigns support to testing. This is allows for pulling instance variables that were set in a controller to tests.</li>
+</ul>
+<ul>
+	<li>Added ability to do 'session' based tests.</li>
+</ul>
+<ul>
+	<li>Added assert_difference method.</li>
+</ul>
+<ul>
+	<li>Added ability to set/remove cookies before requests are made.</li>
+</ul>
+<ul>
+	<li>gem: mack_ruby_core_extensions 0.1.4</li>
+</ul>
+<pre>$ sudo gem install mack</pre>

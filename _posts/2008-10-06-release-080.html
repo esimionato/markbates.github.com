@@ -1,0 +1,81 @@
+---
+layout: post
+title: Release 0.8.0
+tags:
+- assets
+- cachetastic
+- configatron
+- General
+- logging
+- mack
+- release
+- Releases
+- routes
+- routing
+- Updates
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+---
+Here it is the 0.8.0 release of Mack! What a fun and exciting release it is as well. There are a few big changes under the hood, all for the better of course, but there's only really one that will cause existing Mack projects some conversion pain. However, we've tried to take the sting out of that with a helpful rake task.
+<h3>Configatron Support</h3>
+Mack 0.8.0 replaces the old application_configuration system with the new ultra sexy and cool, <a href="http://www.mackframework.com/2008/10/03/configatron-214-released/">Configatron</a> system. This is a much better way of doing system configurations, and I'm sure you'll agree once you give it a spin. We've tried to take the edge off the conversion of these configuration systems with a helpful little rake task:
+<pre>$&nbsp;rake mack:update:configuration</pre>
+For most cases, that task should do just fine. There might be a few places you have to tweak, such as in your own code, but once you do that, you'll love Configatron!
+
+For more information about using Configatron checkout this page:
+
+<a href="http://www.mackery.com/configuration/configatron">http://www.mackery.com/configuration/configatron</a>
+<h3>A New Router</h3>
+That's right, the router in Mack has been completely rewritten from the ground up, yet unlike other frameworks, we've managed to keep our external API the same, so you don't have to change your routes.rb at all. :) That's a bit of good news, isn't it?
+
+What do you get with the new router? Well, for one, it should be faster, that's always a plus. You can also now do 'wildcard' parameters in routes, use procs, extended 'resourced' routes, define 'host' and 'scheme' parameters, use regular expressions, and a few other little nifty things. Plus, because of the rewrite, it's going to make it easier to extending the routing system to be even more powerful! In a future release, sometime in the 0.8.x series, you'll even be able to plugin in your own router just by implementing a few API methods.
+
+For more information about the new router, and what you can do, check out:
+
+<a href="http://www.mackery.com/routing/index">http://www.mackery.com/routing/index</a>
+<h3>Asset Management</h3>
+There is now a really great asset management system that easily allows you to build bundles of CSS and JavaScript files to help keep your code neat and easy to use. Bundle that with the new mack-asset_packager gem, and support for asset hosts, you get a simple, easy, and fast way to compress and deliver your assets.&nbsp;
+
+For more information, checkout these helpful pages from the user guide:
+
+<a href="http://www.mackery.com/views/asset_mgr">http://www.mackery.com/views/asset_mgr</a>
+<a href="http://www.mackery.com/views/asset_host">http://www.mackery.com/views/asset_host</a>&nbsp;
+<h3>Misc.</h3>
+As always, there's a bunch of other great stuff just lurking around in this release. A better logger, for a start, more helpers, bug fixes, better error reporting, default 404 and 500 pages, and more. Please download and enjoy the release, I'm sure you'll find worth it. Enjoy!
+
+Changelog:
+<ol>
+	<li>[#187] Fixed: When an exception is raised, the request doesn't get 'logged'</li>
+	<li>[#185] Fixed: .html is being appended to logged requests when there's a 404</li>
+	<li>[#184] Request logging should also print the message of the status code</li>
+	<li>[#183] Updates to asset mgr/host</li>
+	<li>[#181] Content-type can now be set with calling render.</li>
+	<li>[#179] When configatron.mack.show_exceptions is false you now either the public/404.html or public/500.html file.</li>
+	<li>[#178] Added a configure parameter to turn off log coloring</li>
+	<li>[#176] Added a Google Analytics helper.</li>
+	<li>[#175] Generating urls should use host or scheme if defined</li>
+	<li>[#171] Ability to extend resources in routes</li>
+	<li>[#170] Regex support in routes</li>
+	<li>[#169] Proc support for Routes</li>
+	<li>[#168] Fixed ERB errors not being reported correctly.</li>
+	<li>[#167] Rake task to convert app config yamls to configatron</li>
+	<li>[#165] Asset Packager</li>
+	<li>[#164] Response helper for 'attachments'</li>
+	<li>[#159] Added link_unless_current and link_if helpers</li>
+	<li>[#156] Added 'Wildcard' Routes support</li>
+	<li>[#152] INCOMPATIBILITY NOTICE: Removed deprecated support for delivered_emails use delivered_notifiers instead.</li>
+	<li>[#138] Added support for 'host' &amp; 'scheme' parameters in routes</li>
+	<li>[#135] Replaced log4r with logging gem.</li>
+	<li>[#119] Freeze gems</li>
+	<li>[#106] INCOMPATIBILITY NOTICE: Removed deprecated support for droute_url</li>
+	<li>[#93] INCOMPATIBILITY NOTICE: Removed deprecated support for 'top' level ApplicationHelper</li>
+	<li>[#23] INCOMPATIBILITY NOTICE: Removed support for application_configuration and added support for configatron</li>
+	<li>gem: logging 0.9.4</li>
+	<li>gem: thin 1.0.0</li>
+	<li>gem: rspec 1.1.8</li>
+	<li>gem: configatron 2.1.4</li>
+	<li>gem: cachetastic 2.0.0</li>
+</ol>

@@ -1,0 +1,101 @@
+---
+layout: post
+title: Release 0.7.0
+tags:
+- addressable
+- data factory
+- data_mapper
+- distributed objects
+- distributed routes
+- distributed views/layouts
+- facets
+- General
+- genosaurus
+- haml
+- helpers
+- mack
+- merb
+- rails
+- release
+- Releases
+- rinda
+- tell messaging
+- Updates
+- wiki
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  enclosure: ! 'http://screencasts.mackframework.com/Mack%20Distributed%20Demo.mov
+
+    71917914
+
+    video/quicktime
+
+'
+---
+I know that with every release I say something like, "This is a big release", but the fact of the matter is this is a big release. Amongst the 49 tickets that make up release 0.7.0, there are two in particular that are at the core of Mack's very existence, they are Distributed Objects and Distributed Views/Layouts.
+
+Back on March 26th Mack 0.4.0 was released. This release brought the first of three large distributed features, Distributed Routes. With 0.7.0 Mack fully realizes it's goal of making it easy to write fully distributed web applications.&nbsp;There is a very nice wiki page, on our new wiki, that shows in detail how to use the new distributed features. That page can found&nbsp;<a href="http://www.mackwiki.com/using_the_mack-distributed_gem" target="_blank">here</a>. Also, don't forget to watch the screencast of the new distributed features that can be found <a href="http://screencasts.mackframework.com/Mack%20Distributed%20Demo.mov" target="_blank">here</a>.
+<h3>Distributed Objects</h3>
+Distributed objects allow you to easily distribute access to your library and model code amongst any of your other Mack applications. Allowing this access is as simple as requiring the mack-distributed gem, adding a few lines to your configuration, and starting the mack_ring_server binary. 'Client' applications just need to require the mack-distributed gem.
+<h3>Distributed Views/Layouts</h3>
+With distributed views and layouts you can now share the look and feel from one application with all of your applications. Configuration and use is just as easy using distributed objects.
+<h3>Form and HTML Helpers</h3>
+People have been requesting more HTML and form helper methods, and we're more than happy to comply. There are whole bunch of these new methods now to help you more easily build your applications. The generators have been updated to use these new methods, to make your job even easier. There is also now support for doing Date/Time drop downs, similar to Rails and Merb.
+<h3>'Tell' Messaging</h3>
+Rails folks know 'tell' messaging as 'flash' messaging and Merb folks know it as 'message' messaging. We went with 'tell'. Tell messages are cleared after any non-redirect request. They're a great way to send a simple message down to the client.
+<h3>New Wiki</h3>
+With this release there is also a new wiki at, <a href="http://www.mackwiki.com" target="_blank">http://www.mackwiki.com</a>. This new wiki, incidentally built using Mack 0.7.0, will house all the tutorials and how-to's for Mack. There are a few entries from the old wiki that still need to brought over during the next day or two.
+
+Changelog:
+<ul>
+	<li><a href="http://mack.lighthouseapp.com/projects/11385/tickets/114-add-javascript-link_helper" target="_blank">[#114</a>] Javascript link_helper</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/112-error-generating-mack-application" target="_blank">#112</a>] Error generating mack application</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/109-update-to-datamapper-0-9-4" target="_blank">#109</a>] DataMapper 0.9.4</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/103-log-colors-for-console-output-should-be-configurable-by-level" target="_blank">#103</a>] Log colors for the console are now configurable per log level.</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/102-define-association-method-in-data-factory" target="_blank">#102</a>] New association method in data_factory</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/101-update-file-upload-testing" target="_blank">#101</a>] Update to file upload testing (build_file -&gt; file_for_upload, and multipart support in put)</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/100-inline-routing-parameters-are-being-mutated" target="_blank">#100</a>] Inline routing parameters are being mutated</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/99-facets-2-4-3-support" target="_blank">#99</a>] Upgraded to facets 2.4.3</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/98-facets-don-t-seem-to-be-loaded-when-reading-app_config-files" target="_blank">#98</a>] Fixed mack-facets not being loaded before app_config files.</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/97-sessions-only-work-with-local_memory-mode" target="_blank">#97</a>] Fixed sessions only working with 'local_memory' mode</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/96-need-to-cache-distributed-view-files" target="_blank">#96</a>] Distributed Views module now uses file cache</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/92-remove-deprecated-orm-code-from-mack" target="_blank">#92</a>] Removed deprecated app_config.orm code.</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/91-if-gems-rb-doesn-t-exist-mack-blows-up" target="_blank">#91</a>] Fixed Mack blowing up if there is no config/initializers/gems.rb file.</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/90-add-deprecation-system" target="_blank">#90</a>] Added deprecation system.</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/89-gems-tasks-don-t-work" target="_blank">#89</a>] rake gems:* will now only display warning if any gem required is not installed (and not break)</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/88-sqlite3-tests-in-mack-active_record" target="_blank">#88</a>] Implemented pending SQLite3 tests in mack-activerecord</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/87-refactor-common-orm-code-into-mack-orm-gem" target="_blank">#87</a>] Refactored out common ORM code from mack-active_record and mack-data_mapper into mack-orm</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/86-add-stylesheet-link-helper" target="_blank">#86</a>] stylesheet link helper</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/85-mack-viewhelpers-htmlhelpers-needs-to-be-refactored" target="_blank">#85</a>] Refactored out Mack::ViewHelpers::HtmlHelpers into Mack::ViewHelpers::HtmlHelpers, Mack::ViewHelpers::FormHelpers and&nbsp;Mack::ViewHelpers::linkHelpers</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/84-there-needs-to-be-a-way-to-lookup-a-specific-distributed-service" target="_blank">#84</a>] Added Mack::Distributed.lookup(url) to retrieve specific distributed services.</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/83-mail_to-helper-needed" target="_blank">#83</a>] Added mail_to HTML helper.</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/82-mack-distributed-needs-an-acl" target="_blank">#82</a>] Added ACL support to mack-distributed</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/81-session-s-don-t-carry-across-a-redirect-in-testing" target="_blank">#81</a>] Fixed sessions working with redirects in testing</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/80-original-object-s-inspect-should-be-added-to-the-distributed-proxy-object-s-inspect" target="_blank">#80</a>] Distributed objects present both the DRb::DRbObject inspect and the original object's inspect when asked.</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/79-rename-use_distributed_routes-config" target="_blank">#79</a>] Renamed app_config.mack.use_distributed_routes to app_config.mack.share_routes</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/76-move-mack_ring_server-to-mack-distributed" target="_blank">#76</a>] Move mack_ring_server to mack-distributed</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/75-there-are-still-distributed-rake-tasks-in-mack-core" target="_blank">#75</a>] Left over mack-distributed rake tasks</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/74-optional-disable-initialization-logging" target="_blank">#74</a>] Added optional feature to disable initialization logging.</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/73-tests-should-no-longer-use-functional-unit-folders" target="_blank">#73</a>] Tests no longer use the functional/unit directories</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/69-generators-for-view-helpers-and-controller-helpers" target="_blank">#69</a>] Added ViewHelperGenerator and ControllerHelperGenerator</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/68-transactional-support-in-mack-activerecord" target="_blank">#68</a>] Transactional support in mack-AR</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/67-proper-test-setup-tasks-for-datamapper-and-activerecord" target="_blank">#67</a>] Added test:setup tasks for active_record and data_mapper</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/62-remove-l10n-warnings" target="_blank">#62</a>] Removed const redefined warnings if mack-l10n is used along with mack-activerecord</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/39-haml-2-x-support" target="_blank">#39</a>] HAML 2.0.2 support</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/28-refactor-out-encryption-code" target="_blank">#28</a>] Refactored out encryption into the mack-encryption gem.</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/25-simple-controller-generator" target="_blank">#25</a>] Added ControllerGenerator</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/19-more-html-helpers" target="_blank">#19</a>] Added HTML form helpers</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/15-file-upload-testing" target="_blank">#15</a>] File upload testing support (ability to do multipart form post in testing)</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/11-distributed-views-layouts" target="_blank">#11</a>] Distributed Layout/Views</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/10-distributed-models" target="_blank">#10</a>] Added distributed objects to mack-distributed.</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/8-refactor-out-distributed-code" target="_blank">#8</a>]  Move distributed code from mack-core to mack-more</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/5-flash-messaging" target="_blank">#5</a>] Added tell messaging</li>
+	<li>gem: genosaurus 1.2.2</li>
+	<li>gem: haml 2.0.2</li>
+	<li>gem: addressable 1.0.4</li>
+	<li>gem: facets 2.4.3</li>
+	<li>gem: data_mapper 0.9.4</li>
+</ul>

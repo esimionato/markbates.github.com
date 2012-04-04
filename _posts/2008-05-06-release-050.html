@@ -1,0 +1,47 @@
+---
+layout: post
+title: Release 0.5.0
+tags:
+- darsono sutedja
+- data mapper
+- erb
+- erub
+- General
+- genosaurus
+- mack
+- rcov
+- release
+- Releases
+- Updates
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+---
+I know I've been talking about this release for a while now, and here it finally is. There's some good bug fixes in here, a few new rake tasks, and some other little things like that.
+
+The biggest thing, however, is what's been causing a stir online now for the past few days, I've split out the ORM support into separate gems. I'm not going to go over it again, you can find all the details here:Â <a href="http://www.mackframework.com/2008/05/04/orms-and-mack/" target="_blank">http://www.mackframework.com/2008/05/04/orms-and-mack/</a>
+
+Needless to say this is a good release to get, if not for the bug fixes alone, but for the great db:create rake tasks that are now in there. Thanks, again, to Darsono Sutedja for his great contributions.
+
+Changelog
+<ul>
+	<li>Added rake db:create and db:create:all rake tasks.</li>
+	<li>Refactored out constants, such as MACK_ROOT and MACK_ENV and made them into Mack::Configuration.env, Mack::Configuration.root, etc...</li>
+	<li>Added test:stats and test:coverage Rake tasks.</li>
+	<li>Removed support for ActiveRecord and DataMapper and moved them into their own gems.</li>
+	<li>Fixed a bug where yields in ERB weren't giving the desired results.</li>
+	<li>DataMapper database.yml file can now be nested, and is generated as such.</li>
+	<li>Cleaned up some tests, and refactored the HTML generation stuff.</li>
+	<li>Fixed a bug with the scaffold generating 'bad' methods instead of 'post'</li>
+	<li>Made error_messages_for more compatible with DataMapper.</li>
+	<li>Fixed a bug loading url.rb and uploaded_file.rb found by Phil Darnowsky</li>
+	<li>[dsutedja] Render method (in controller_base) now accepts response status code.</li>
+	<li>gem: mack_ruby_core_extensions 0.1.23</li>
+	<li>gem: genosaurus 1.1.4</li>
+	<li>gem: datamapper 0.3.2</li>
+	<li>gem: rcov 0.8.1.2.0</li>
+	<li>gem: mack-data_mapper 0.5.0</li>
+	<li>gem: erubis 2.6.0</li>
+</ul>

@@ -1,0 +1,44 @@
+---
+layout: post
+title: Release 0.0.6
+tags:
+- gem
+- generate
+- generator
+- mack
+- News
+- plugin
+- redirect initialize
+- release
+- Releases
+- Updates
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+---
+Get it while it's hot! Of course, you'll probably want to wait a bit for it to propagate to all the gem mirrors. If you really can't wait, you can find it <a href="http://rubyforge.org/frs/download.php/33146/mack-0.0.6.gem">here</a>.
+<pre>$ sudo gem install mack</pre>
+From the CHANGELOG:
+<ul>
+	<li>rake generate:&lt;generator_name&gt;</li>
+</ul>
+<ul>
+	<li>rake generate:plugin - will generate the stub of a plugin in the vendor/plugins directory.</li>
+</ul>
+<ul>
+	<li>rake dump:config - prints out the configuration information for the specified environment.</li>
+</ul>
+<ul>
+	<li>redirect_to now takes an optional Hash as a second parameter, instead of a fixnum.</li>
+</ul>
+<ul>
+	<li>redirect_to will now do server side redirects if passed :server_side =&gt; true as part of the optional second argument Hash.</li>
+</ul>
+<ul>
+	<li>plugin in support. plugins get loaded before the 'app' directory. each plugins 'lib' directory is added to the global load path and then each plugins 'init.rb' file is called, which is responsible for loading the necessary files. The 'lib' directories are finally removed from the global load path.</li>
+</ul>
+<ul>
+	<li>renamed initialize directory to initialization. moved logging, orm_support, and plugins to a subfolder called initializers.</li>
+</ul>

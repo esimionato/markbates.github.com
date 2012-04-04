@@ -1,0 +1,41 @@
+---
+layout: post
+title: Release 0.4.6
+tags:
+- erb
+- erubis
+- generators
+- mack
+- migrations
+- News
+- release
+- Releases
+- scaffold
+- thin
+- Updates
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+---
+This is a pretty cool release. First off Thin has been updated to 0.8.0, a rather nice, stable release. ERB has been replaced with <a href="http://www.kuwata-lab.com/erubis/" target="_blank">Erubis</a>Â to give a significant improvement in speed, which, after all is one of Mack's most important traits.Â 
+
+There's been a general overhaul of the generators included with Mack. Mostly, cleaning them up. With that said things like the scaffold, model, and migration generators have been updated to do what a lot of people have been asking for, that is take a 'cols' parameter and build out the generated code corrrectly. This really makes life, very, very simple.
+
+There will be a re-written 'blog' tutorial coming out soon to make use of this, as well as migration support that's now part of Mack.
+
+Very exciting stuff! Enjoy!
+
+Changelog:
+<ul>
+	<li>Mack now uses Erubis, http://www.kuwata-lab.com/erubis/, for it's rendering engine instead of ERB. This makes Mack even faster now! Yippie!</li>
+	<li>Added rake generate:model name=&lt;model_name&gt; (optional: cols=&lt;col_1&gt;:&lt;col_1_type&gt;,&lt;col_2&gt;:&lt;col_2_type&gt;) This will also create a migration for you.</li>
+	<li>Updated rake generate:migration name=&lt;model_name&gt; (optional: cols=&lt;col_1&gt;:&lt;col_1_type&gt;,&lt;col_2&gt;:&lt;col_2_type&gt;) This will create the proper table migration for you.</li>
+	<li>Updated rake generate:scaffold to use the ModelGenerator now.</li>
+	<li>ScaffoldGenerator now create input fields based on the type of columns, if any, passed in.</li>
+	<li>Overall general refactoring of the generator classes.</li>
+	<li>Fixed a bug with request logging not, well, logging.</li>
+	<li>gem: erubis 2.5.0</li>
+	<li>gem: thin 0.8.0</li>
+</ul>

@@ -1,0 +1,57 @@
+---
+layout: post
+title: Release 0.5.5.4
+tags:
+- andre ludwig
+- General
+- mack
+- mod_rails
+- mongrel
+- passenger
+- release
+- Releases
+- saji
+- thin
+- Updates
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+---
+This is actually a combined post about 0.5.5.3 and 0.5.5.4. They are both small patch releases, but they both address some pretty big problems.
+
+<strong>0.5.5.3:</strong>
+
+The new version of Passenger (aka mod_rails) now has support for Rack based applications. In their documentation they show how to use a Mack app with Passenger. The documentation is based on the yet to be released Thin adapter. With that said, both of those systems use a piece of Mack that's no longer there. Because of that I've restored the small section of code, to make sure those two systems work with Mack. Which is great news.
+
+On some flavors of Unix when you do a Dir.glob you don't necessarily get back an ordered list of files. Because of that some people we're getting uninitializedÂ constant errors. This has also been addressed in 0.5.5.3.
+
+<strong>0.5.5.4:</strong>
+
+A couple of people have reported issues where they were getting the following error even with the most simple application:
+
+"Rack::Lint::LintError: env missing required key QUERY_STRING"
+
+A Mack supporter by the name of Andre Ludwig stepped up to help me try and figure out the problem. I couldn't reproduce it on the machines I have access to, I suppose that goes without saying, because I could've reproduced it, I would've fixed it sooner. Anyway, Andre stepped up with both his time, spending most of his Sunday online with me, but also with his hardware. Andre opened up his server to me so I could go in there directly and play with things until I found the problem.
+
+Sure enough, once I got in there, it didn't take me too long to figure out what the problem was. It turned out to be a conflict between the latest version of Mongrel (1.1.5) and the latest version of Thin (0.8.1). A simple rewrite of the rake server task and voila! problem solved.
+
+So I would like to say thanks so much to Andre Ludwig for all his time and his hardware. I would also like to thank Saji for originally reporting the problem and for doing some troubleshooting for me as well.
+
+As the community grows I can't help but be awed by not only how much people are loving what Mack is doing, but also by the communities willingness to get involved and help out. Thanks so much everyone!
+
+Changelog 0.5.5.4:
+<ul>
+	<li>Fixed the damn Lint error some people were facing!</li>
+</ul>
+<div>
+
+Changelog 0.5.5.3:
+<ul>
+	<li>Restored compatibility with Passenger and the next version of Thin.</li>
+	<li>Fixed 'requires' out of order in certain flavors or unix. Hopefully.</li>
+</ul>
+Â 
+
+</div>

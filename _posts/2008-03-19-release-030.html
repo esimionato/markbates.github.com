@@ -1,0 +1,88 @@
+---
+layout: post
+title: Release 0.3.0
+tags:
+- builder
+- crypt
+- encryption
+- erb
+- format
+- html
+- mack
+- News
+- rails
+- release
+- Releases
+- rijndael
+- ruby
+- Updates
+- xml
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+---
+I've been holding back this release so I could get distributed routing into it, but it appears that there's still a little more work that needs to be done before it's ready to go. I'm hoping to get it out by the beginning of next week, but don't quote me on that.
+
+Instead of focusing on what didn't make it in, let's talk about what did make it in! There's some cool stuff in this release.
+<h3>Format Driven Content</h3>
+Mack now allows you to drive different content based on the format requested. For example:
+
+/posts - will render app/views/posts/index.html.erb
+/posts.html  - will also render app/views/posts/index.html.erb
+/posts.xml  - will render app/views/posts/index.xml.erb - A special note *.xml.erb files, despite their name, do NOT get run through ERB, instead they use the XML Builder library
+/posts.js  - will render app/views/posts/index.js.erb
+etc...
+
+Alternatively, in your action you can now define 'want' blocks, to run specific code based on the format. Example:
+<pre>class PostsController
+  def index
+    # find all the posts in the system
+     @posts = Post.find(:all)
+    wants(:html) do
+      # this will only be run if html is requested.
+      # we need a username for a 'welcome message in the view'
+      @username = @user.username
+    end
+    wants(:xml) do
+      # this will only be run if html is requested.
+      # find the last published date
+      @last_pub_date = Rss.find_last_by_date_by_object(:posts)
+    end
+  end
+end</pre>
+<h3>XML Builder Support</h3>
+I'm not going to go into this, there is another nice post coming shortly that will explain how to use this library to add RSS to our blog demo. Here's the <a href="http://www.mackframework.com/2008/03/19/adding-rssxml-feeds-to-our-blog-demo/">post</a>.
+<h3>Built-in Encryption</h3>
+In every app I've ever built I found the need to use encryption. Whether it's for encrypting something into a cookie, a password in the database, or a file on disk, we all need encryption, so I've baked the crypt gem into Mack.
+
+At the very simple level you can easily do this in your code:
+<pre>@my_encrypted_value = _encrypt("hello world")</pre>
+and you'll be returned a nice pieced of garbled data using the Crypt/Rijndael library. Decrypting is just as easy:
+<pre>_decrypt(@my_encrypted_value) # =&gt; "hello world"</pre>
+See, I told you it couldn't be easier. It gets even better you can even define your own 'worker' to implement other encryption schemes. It's as simple as this:
+<pre>class Mack::Utils::Crypt::HorribleWorker
+  def encrypt(value)
+    value.reverse
+  end
+  def decrypt(value)
+    value.reverse
+  end
+end
+
+_encrypt("hello", :horrible) # =&gt; "olleh"
+_decrypt("decrypt", :horrible) # =&gt; "hello"</pre>
+See how easy that was? You can also do:
+<pre>@my_encrypted_value = "Hello".encrypt
+@my_encrypted_value.decrypt #=&gt; "Hello"</pre>
+Either way it's now easy to handle encryption in your funky cool Mack app.
+
+Changelog:
+<ul>
+	<li>Ticket: #8 Xml Builder Support</li>
+	<li>Ticket: #7 Ability to drive certain content based on 'format'</li>
+	<li>Ticket: #9 Added a global encryption system to make encrypting/decrypting of strings easy to use</li>
+	<li>gem: builder 2.1.2</li>
+	<li>gem: crypt 1.1.4</li>
+</ul>

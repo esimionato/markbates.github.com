@@ -1,0 +1,133 @@
+---
+layout: post
+title: Release 0.6.1.1
+tags:
+- caching
+- data factory
+- data mapper
+- email
+- General
+- logging
+- mack
+- release
+- Releases
+- rjs
+- ruby-debug
+- Updates
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+---
+Mack 0.6.1.1 features 38 completed tickets and a whole host of really great features and improvements. Here's a quick overview of a few of the big features in Mack 0.6.1.1.
+<h3>Page Caching</h3>
+There is now a mack-caching gem which gives you easy to use page caching when you require it. To use page caching first you need to add it to your gems.rb file like such:
+<pre>gem.add "mack-caching", :libs =&gt; "mack-caching"</pre>
+That will require the gem and give your app access to the page caching libraries. Next you to turn on page caching in your application. In the appropriate config/*.yml file add the following:
+<pre>use_page_caching: true</pre>
+Now, you just need to tell your controllers which actions they should cache:
+<pre>class FooController
+&nbsp;&nbsp;include Mack::Controller
+&nbsp;&nbsp;cache_pages :only =&gt; [:index, :show]
+end</pre>
+If you give the cache_pages no optional parameters then it will cache all the actions for that controller. Alternatively, you could give it an :except parameter to list the actions you don't want cached.&nbsp;
+<h3>Notifiers (aka Mailers)</h3>
+Mack now has a mack-notifier gem that will be the repository for all 'notification' systems, the first of which is email. The Mack::Notifier API is simple and easy to use and will allow developers to plugin in different notification systems under the cover without having to change their application code.&nbsp;
+
+A notifier can look as simple as:
+<pre>class WelcomeEmail
+&nbsp;&nbsp;include Mack::Notifier
+end</pre>
+With that you can then write the following bit of code:
+<pre>we = WelcomeEmail.new
+we.to = "foo@example.com"
+we.from = "bar@example.com"
+we.subject = "Hello World"
+we.body(:text) = "My plain text body"
+we.body(:html) = "My html body"
+we.attach(Mack::Notifier::Attachment.new("/path/to/my/file"))&nbsp;
+we.deliver</pre>
+Obviously there's a lot more to the API, including a validations module, but that's a subject for another post.&nbsp;
+<h3>JavaScript (aka RJS)</h3>
+The mack-javascript gem now gives you Rails-like RJS support for Mack. The default library to use with mack-javascript is jQuery, but there is prototype support available as well.&nbsp;
+<h3>Data Factory</h3>
+Creating faux data for testing can be a real nightmare. Fixtures can be difficult to maintain and trying to create your own faux data can be a chore. That's where the mack-data_factory gem comes in.
+
+For each model that you want to produce, you will need to define a factory class. &nbsp;
+
+Let's say that I have 2 models: Item and User, and Item belongs to user. &nbsp;So the factories will look like the following:
+<pre>class ItemFactory
+&nbsp;&nbsp;include Mack::Data::Factory
+&nbsp;&nbsp;field :title, "MyItem"
+&nbsp;&nbsp;field :owner_id, {:user =&gt; 'id'}
+end
+
+class UserFactory
+&nbsp;&nbsp;include Mack::Data::Factory
+&nbsp;&nbsp;field :username, "planters", :length =&gt; 25, :content =&gt; :alpha
+&nbsp;&nbsp;field :password, "roastedPeanuts", :immutable =&gt; true
+end</pre>
+So, the 2 classes above defined the factory for item and user. &nbsp;As you can see, each factory will need to explicitly&nbsp;list all the fields that it will populate, and for each field, you can define rules on how the content is generated.
+
+Supported content types:&nbsp;
+<ul>
+	<li>:alpha --&gt; alphabets. &nbsp;rules: [:length, :min_length, :max_length]</li>
+	<li>:alphanumeric --&gt; alphabets and number. &nbsp;rules: same as :alpha</li>
+	<li>:numeric --&gt; numbers [optional, because if the field's default value is number, its content type will automatically set to numeric)</li>
+	<li>:email --&gt; generate random email address</li>
+	<li>:username --&gt; generate random username</li>
+	<li>:domain --&gt; generate random domain name</li>
+	<li>:firstname --&gt; generate first name</li>
+	<li>:lastname --&gt; generate last name</li>
+	<li>:name --&gt; generate full name</li>
+	<li>:city --&gt; generate city name</li>
+	<li>:streetname --&gt; generate street name</li>
+	<li>:state --&gt; generate state. &nbsp;rules: [:country --&gt; :us or :uk, :abbr --&gt; true if you want a abbreviated state name (us only)]</li>
+	<li>:zipcode --&gt; generate zipcode. rules: [:country --&gt; :us or :uk]</li>
+	<li>:phone --&gt; generate phone number</li>
+	<li>:company --&gt; generate company name. &nbsp;rules: [:include_bs --&gt; include sales tag line]
+example: &nbsp;field, "", :content =&gt; :company, :include_bs =&gt; true&nbsp;could generate something like:
+Fadel-Larkin&nbsp;monetize cross-media experiences</li>
+</ul>
+<div>There's a lot more to the mack-data_factory gem, so I highly recommend you check it out.</div>
+Changelog:
+<ul>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/60-mack-app_generator-is-broken" target="_blank">#60</a>] Fixed Mack executable problem</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/59-the-gems-tasks-aren-t-working-again" target="_blank">#59</a>] Fixed gems:* tasks</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/57-files-should-be-moved-under-lib-mack" target="_blank">#57</a>] Moved most files under to lib/mack</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/56-create-mack-utils-registrymap" target="_blank">#56</a>] mack-more: Added Mack::Utils::RegistryMap</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/55-registrymap-and-registrylist" target="_blank">#55</a>] mack-more: mack-facets: Mack::Utils::Registry is now Mack::Utils::RegistryList</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/54-datamapper-0-9-3-support" target="_blank">#54</a>] Added DataMapper 0.9.3 support</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/52-orm-require-needs-to-use-full-path" target="_blank">#52</a>] mack-more: mack-[orm] should require mack-[orm].rb using its full path.</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/51-orm-setting-is-in-the-wrong-place-in-newly-generated-app" target="_blank">#51</a>] Application generator should generate orm support in the right place</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/50-split-mack-rb-in-2" target="_blank">#50</a>] Mack will now have 2 environment files: mack_core and mack_app. &nbsp;Mack.rb will load both files, but it gives other module chance to load just the core files and not the application's files.</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/49-orm-tasks-aren-t-available" target="_blank">#49</a>] Making sure the orm tasks is available when orm_support is removed from the app_config</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/49-orm-tasks-aren-t-available" target="_blank">#49</a>] mack-active_record: &nbsp;mack-active_record.rb will require mack-active_record_tasks.rb</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/49-orm-tasks-aren-t-available" target="_blank">#49</a>] mack-data_mapper: &nbsp;mack-data_mapper.rb will require mack-data_mapper_tasks.rb</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/49-orm-tasks-aren-t-available" target="_blank">#49</a>] Updated warning message if orm is defined in app_config (i.e. user only needs to require mack-[orm_name], instead of both that and mack-[orm_name]_tasks).</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/48-rake-generator-list-displays-wrong-information" target="_blank">#48</a>] rake generator:list now displays the correct names for the generator tasks.</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/47-rake-gems-install-blows-up" target="_blank">#47</a>] rake gems:* tasks now work, and no longer require mack_ruby_core_extensions</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/46-to_param-on-nilclass-should-raise-nomethoderror" target="_blank">#46</a>] Calling .to_param on nil now raises a NoMethodError exception.</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/45-rake-stats-doesn-t-work-with-test-unit-testcase" target="_blank">#45</a>] rake stats task now works with Test::Unit::TestCase</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/44-refactor-mack-runner-to-make-it-easier-to-extend" target="_blank">#44</a>] Mack::Runner has now been extended to allow for greater extension flexibility.</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/43-create-a-registry-base-class" target="_blank">#43</a>] Added a Mack::Utils::Registry class to allow for easy creation of registries.</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/42-applications-should-be-able-to-turn-of-sessions-globally" target="_blank">#42</a>] Sessions can now be turned off globally using the app_config.mack.use_sessions switch.</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/41-deprecate-app_config-orm" target="_blank">#41</a>] Deprecate orm_support.rb</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/38-a-controller-registry-is-needed" target="_blank">#38</a>] There is now a registry of Controllers that are in the system.</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/36-controller-s-don-t-have-control-over-there-initialize-methods" target="_blank">#36</a>] Renamed the initialize method in the Mack::Controller module to configure_controller. This gives</li>
+	<li>&nbsp;&nbsp;control of the initialize method back to the class.</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/34-mack-l10n-raised-exception-should-have-fully-qualified-name" target="_blank">#34</a>] Mack::l10n now raises exception with a fully qualified name.</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/33-mack-0-6-0-activerecord-dependency" target="_blank">#33</a>] mack-active_record now requires ActiveRecord 2.0.2 explicitly, not &gt;=2.0.2</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/31-support-for-ruby-debug" target="_blank">#31</a>] Added support for ruby-debug.</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/26-log-coloring-in-console" target="_blank">#26</a>] Log Coloring for console output.</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/24-mailer-support" target="_blank">#24</a>] Added mack-notifier support.</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/18-page-caching" target="_blank">#18</a>] Added Page caching.</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/14-fixtures-like-thing" target="_blank">#14</a>] Data Factory</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/7-hookable">#7</a>] Added support for Extlib::Hook in a few places.</li>
+	<li>[<a href="http://mack.lighthouseapp.com/projects/11385/tickets/6-rjs" target="_blank">#6</a>] RJS support</li>
+	<li>Added a rake tmp:clear task.</li>
+	<li>gem: application_configuration 1.5.1</li>
+	<li>gem: ruby-debug 0.10.0</li>
+	<li>gem: data_mapper 0.9.3</li>
+</ul>

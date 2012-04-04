@@ -1,0 +1,71 @@
+---
+layout: post
+title: Release 0.7.1
+tags:
+- cachetastic
+- cookie
+- data mapper
+- diogo almeida
+- facets
+- General
+- genosaurus
+- rack
+- release
+- Releases
+- session
+- Updates
+- xss
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+---
+<div>
+
+Although not as sexy a release as 0.7.0, there are some very important bug fixes and some cool new little features in this release. Rack has been upgraded to v0.4.0. DataMapper to 0.9.5. Facets to 2.4.4, and a few other gems as well.
+
+There is now a much nicer session store API that will allow developers to build their own session stores. There's also a couple of new session stores that ship with 0.7.1. There's a DataMapper session store, and a cookie session store, which is now the default session store. The previous Cachetastic based session store can be used by requiring the mack-caching gem in gems.rb and putting the following setting in your app_config/*.yml file:
+<pre>mack::session_store: cachetastic</pre>
+There is now built-in support to help prevent cross-site scripting attacks on forms.&nbsp;Some view helper methods have nice updates such as :disable_with and :confirm, and asset hosts.
+
+And a whole host of other little improvements across the board. Enjoy!
+
+Changelog:
+<ul>
+	<li>[#153] Emails with just a single 'part' are now being sent correctly.</li>
+	<li>[#147] Added :confirm to button helpers.</li>
+	<li>[#146] [Diogo Almeida] Added :disable_with to submit_button form helper.</li>
+	<li>[#145] Added rake generate:&lt;generator_name&gt;:desc task to 'describe' a Genosaurus generator</li>
+	<li>[#144] INCOMPATIBILITY NOTICE: rake server is no more. Please use mackery server instead.</li>
+	<li>[#142] INCOMPATIBILITY NOTICE: rake console is no more. Please use mackery console instead.</li>
+	<li>[#140] Added Mack::BootLoader</li>
+	<li>[#139] Added ability to change the pattern for test files</li>
+	<li>[#137] Added subdomains method on request.</li>
+	<li>[#130] Added ability to 'reload' the console</li>
+	<li>[#129] DataMapper 0.9.5 support</li>
+	<li>[#128] Updated json_pure to 1.1.3 and removed ruby-debug dependency</li>
+	<li>[#127] Moved mack-paths into core</li>
+	<li>[#126] XSS Prevention</li>
+	<li>[#125] Cookie store is now the default session store, not cachetastic</li>
+	<li>[#124] Opened up the session store API</li>
+	<li>[#122] Added DataMapper session store.</li>
+	<li>[#121] Cookie session store support.</li>
+	<li>[#120] Added PassengerGenerator to generate the necessary files to run Mack with Passenger Phusion (mod_rails)</li>
+	<li>[#118] Mack/mack-more can be loaded from vendor/framework/mack and vendor/framework/mack-more</li>
+	<li>[#117] Added rake task: mack:freeze:edge</li>
+	<li>[#107] Updated to Rack 0.4.0</li>
+	<li>[#95] Removed deprecated model_* methods</li>
+	<li>[#94] Removed deprecated submit_tag</li>
+	<li>[#40] Added Mack::Utils::ContentLengthHandler so response will now have 'Content-Length' in its header.</li>
+	<li>[#21] Asset Hosts</li>
+	<li>gem: rack 0.4.0</li>
+	<li>gem: json_pure 1.1.3</li>
+	<li>gem: data_mapper 0.9.5</li>
+	<li>gem: genosaurus 1.2.4</li>
+	<li>gem: ezcrypto 0.7</li>
+	<li>gem: facets 2.4.4</li>
+</ul>
+Â 
+
+Â </div>

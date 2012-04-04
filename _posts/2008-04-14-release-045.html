@@ -1,0 +1,55 @@
+---
+layout: post
+title: Release 0.4.5
+tags:
+- active record
+- data mapper
+- drb
+- gem
+- mack
+- migrations
+- News
+- rake
+- release
+- Releases
+- rinda
+- routes
+- Updates
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+---
+Well, here it is! The release you all were waiting for, the one that finally gives migration support to Mack! That's right, now whether you use ActiveRecord or DataMapper, you can use the familiar rake task 'db:migrate' to run your migrations. Yippie! The scaffold generator will also generate a migration for you, assuming you have ORM support enabled.
+
+There's still some work to go on this, like the ability to pass in command line args to the task to build the full migration for you, but it's a start! It's now pretty easy to get your app going.
+
+Also in this release is a rewrite of the distributed routing functionality. It's now been rewritten to use Rinda. This is going to be the standard for all the distributed functionality that will be coming Mack over the next couple of months. As more functionality lke this is developed, the more it will be wrapped in nice, easy to use APIs.
+
+There's also been some tidying up here in there in the code tree. For example, new applications don't get generated with a boot.rb file. Looking at it, there's really no need for it, since everything is done with Rake tasks.
+
+Overall, I'm very happy with the release, and I feel that this release definitely makes Mack a VERY useable framework because of the migration support. Enjoy!
+
+Changelog:
+<ul>
+	<li>Removed boot.rb file. It was unnecessary.</li>
+	<li>When a new Mack application is generated the Rakefile that gets generated is stamped with the Mack gem version used to create it. This ties the project to that gem. This can, of course, be upgraded as new Mack gems come out, but it's a good way of tying your app to a specific revision of Mack.</li>
+	<li>Added support for migrations for both ActiveRecord and DataMapper. DataMapper migration support requires DataMapper 0.3.0 gem. Please keep in mind, though, that DataMapper 0.3.0 has a serious bug in it, which may prevent you from using it. Please see <a href="http://www.mackframework.com/2008/04/09/horrible-bug-in-datamapper-030/">http://www.mackframework.com/2008/04/09/horrible-bug-in-datamapper-030/</a> for more information.</li>
+	<li>Rewrote distributed routing support to use Rinda inside of plain old DRb. This makes for an almost zero configuration usage.</li>
+	<li>Added: mack_ring_server binary to start a Rinda ring server for use with distributed routing.</li>
+	<li>Sqlite3 is now the default database for Mack applications configured with ORM support.</li>
+	<li>Added a test helper method, rake_task, to aid in the testing of Rake tasks.</li>
+	<li>Added: rake generate:migration name=&lt;migration_name&gt;</li>
+	<li>Added: rake db:migrate</li>
+	<li>Added: rake db:abort_if_pending_migrations</li>
+	<li>Added: rake db:rollback</li>
+	<li>Added: rake db:version</li>
+	<li>Added: rake mack:ring_server:start</li>
+	<li>Added: rake mack:ring_server:stop</li>
+	<li>Added: rake mack:ring_server:restart</li>
+	<li>Added: rake mack:ring_server:services:list</li>
+	<li>gem: application_configuration 1.2.2</li>
+	<li>gem: daemons 1.0.10</li>
+</ul>
+<ol></ol>

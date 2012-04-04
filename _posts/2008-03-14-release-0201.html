@@ -1,0 +1,26 @@
+---
+layout: post
+title: Release 0.2.0.1
+tags:
+- cachetastic
+- distributed routes
+- General
+- mack
+- memcache
+- release
+- Releases
+- rubyforge
+- Updates
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+---
+As previously mentioned there was an issue in a Mack dependency, cachetastic. Mack 0.2.0 used cachetastic-1.3.1 which had a require for the memcache-client gem.
+
+If you didn't have the gem installed you would get some not very nice messages. This require was fixed in cachetastic-1.4.1. Mack 0.2.0.1 uses the new version of cachetastic. There is no new functionality in 0.2.0.1, it's simply the require fix.
+
+Some really cool functionality is in the works for 0.3.0 of Mack, including everyone's favorite, distributed routes. This, unfortunately, probably won't be out till the end of next week.
+<pre>$ sudo gem install mack</pre>
+Like always, please allow time for the gem to propagate throughout the RubyForge mirrors.

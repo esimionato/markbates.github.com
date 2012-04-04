@@ -1,0 +1,63 @@
+---
+layout: post
+title: Release 0.8.2
+tags:
+- active record
+- addressable
+- data mapper
+- deferred? routes
+- ebb
+- english
+- Ezra Zygmuntowicz
+- facets
+- gems
+- General
+- haml
+- mack
+- merb
+- release
+- Releases
+- rspec
+- thin
+- Updates
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+---
+Hey there folks, sorry for the long wait for this release, but it's here. It's been a long November for yours truly. I've had to find a new job. I've had pneumonia. We, at least in America, have celebrated Thanksgiving. And, of course, who can forget RubyConf 2008?
+
+So with that said, what's in 0.8.2? Honestly, not a whole lot. There are a couple of bug fixes, a button_to_remote (think submit_to_remote in Rails) helper, and deferred routes. More on deferred routes in a moment, as it's actually a pretty cool feature that only Mack and Merb share. And finally there is bundled gems.
+<h3>Bundled Gems</h3>
+What do I mean I say 'bundled gems'? Well, because of the rather large number of gems that get installed with Mack, and because of some gem version dependency issues, Mack is now bundling it's third party dependency gems inside itself. For example, mack-facets used to rely on the gems 'facets' and 'english'. Those gems are now bundled inside the mack-facets gem and now longer need to be downloaded and installed by end users. This should make installing Mack super easy. It should also make dealing with having multiple versions of Mack installed on your system easier to deal with and maintain.
+<h3>Deferred? Routes</h3>
+So what are deferred routes? Ezra wrote a really great write up back in <a href="http://brainspl.at/articles/2008/04/18/deferred-requests-with-merb-ebb-and-thin" target="_blank">April</a>. The idea is simple, with newer web servers such as Thin and Ebb, you can tell them to spawn a new thread to handle particular requests, such as long running processes like file uploads. This can really help speed things up as server can process regular requests using an event machine model, which is very fast, but can be really slow and block the server for longer processes. Now those processes can spawn into their own threads and not block the server.
+
+In Mack 0.8.2 you can mark your routes with a deferred? =&gt; true option which will trigger this behavior. It's much more advanced than the similar feature that can be found in Merb, which requires a separate configuration for your deferred actions, and the urls have to be 'hard coded'. Mack let's you use all the dynamic power of your routes, like you would want to. It's just another option on the route itself. For a great tutorial on using deferred routes, check out the following page on www.mackery.com:
+
+<a href="http://www.mackery.com/routing/deferred_routes">http://www.mackery.com/routing/deferred_routes</a>
+<h3>Upgraded Dependencies</h3>
+A few gems have been upgraded as part of this release, the big ones include DataMapper to 0.9.7, ActiveRecord to 2.2.2, and Haml to 2.0.4.
+
+Changelog:
+<ul>
+	<li>[#237] Fixed render :rjs throws errors</li>
+	<li>[#236] Upgraded to ActiveRecord 2.2.2</li>
+	<li>[#235] Upgraded to DataMapper 0.9.7</li>
+	<li>[#230] Upgraded to facets 2.4.5</li>
+	<li>[#229] Upgraded to english 0.3.1</li>
+	<li>[#227] Removed WEBrick logging</li>
+	<li>[#226] Bundled gems.</li>
+	<li>[#225] Removed dependency on Thin</li>
+	<li>[#223] Fixed mackery console fails</li>
+	<li>[#148] Added button_to_remote helper method.</li>
+	<li>[#16] Added deferred? routes.</li>
+	<li>gem: active_record 2.2.2</li>
+	<li>gem: data_mapper 0.9.7</li>
+	<li>gem: addressable 2.0.0</li>
+	<li>gem: facets 2.4.5</li>
+	<li>gem: english 0.3.1</li>
+	<li>gem: rspec 1.1.11</li>
+	<li>gem: haml 2.0.4</li>
+</ul>

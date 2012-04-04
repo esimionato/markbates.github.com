@@ -1,0 +1,48 @@
+---
+layout: post
+title: Release 0.5.5
+tags:
+- erubis
+- General
+- haml
+- mack
+- markaby
+- release
+- Releases
+- rendering
+- Updates
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+---
+Finally, Mack 0.5.5 is released! In addition to some great bug fixes, there is now a new rendering engine, support for automatic mime-types, the ability to register new mime-types, Markaby and Haml support, and much much more! It's a great release.
+
+To find out more about the new rendering engine check out these two posts:
+
+<a href="http://www.mackframework.com/2008/05/20/the-new-rendering-engine/" target="_blank">http://www.mackframework.com/2008/05/20/the-new-rendering-engine/</a>
+
+<a href="http://www.mackframework.com/2008/05/20/055-adding-pdfwriter-plugin-support-tutorial/" target="_blank">http://www.mackframework.com/2008/05/20/055-adding-pdfwriter-plugin-support-tutorial/</a>
+
+Changelog:
+<ul>
+	<li>INCOMPATIBILITY NOTICE: Ripped apart the ENTIRE rendering engine and rewrote it from the ground up. This means that wherever you are using 'render' calls in your views and controllers need to be changed. The new format is render(type, value, options). Examples: render(:action, :show), render(:url, "http://www.mackframework.com"), etc...</li>
+	<li>INCOMPATIBILITY NOTICE: Files named *.xml.erb need to be changed to *.xml.builder to use the Builder::XmlMarkup library. If you leave the .erb extension on there the file will be run through Erubis.</li>
+	<li>INCOMPATIBILITY NOTICE: &lt;%= @content_for_layout %&gt; is now &lt;%= yield_to :view %&gt;</li>
+	<li>Added Markaby support.</li>
+	<li>Added Haml support.</li>
+	<li>Added content_for and yield_to methods in views.</li>
+	<li>Erubis compiled templates are now cached for increased performance.</li>
+	<li>Added render(:inline) and render(:template) support.</li>
+	<li>Refactored, and reorganized some files to clean up the gem.</li>
+	<li>Fixed bug with cookies not merging with configured app_config parameters.</li>
+	<li>Added mime-types. The 'Content-Type' header is now being set based on the format that is requested. Default is text/html.</li>
+	<li>Fixed r.defaults in routes so they are always the last routes to be checked, no matter where they are placed in the routes definitions.</li>
+	<li>render(:url) now recognizes 'local' urls and tries to run them through the app, mimicking most headers from the original request.</li>
+	<li>Added 'options' banners to the mack and mack_ring_server binaries.</li>
+	<li>gem: genosaurus 1.1.8</li>
+	<li>gem: mack_ruby_core_extensions 0.1.28</li>
+	<li>gem: markaby 0.5.0</li>
+	<li>gem: mack-data_mapper 0.5.5</li>
+</ul>

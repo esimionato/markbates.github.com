@@ -1,0 +1,42 @@
+---
+layout: post
+title: Release 0.2.0
+tags:
+- developer
+- extension
+- gem
+- mack
+- News
+- pdf
+- release
+- Releases
+- render
+- Updates
+status: publish
+type: post
+published: true
+meta: {}
+---
+A couple of really cool features in this release. In controllers and views you canÂ  now call:
+<pre>render(:url=&gt; "http://www.mycoolurl.com")</pre>
+Developers can now also develop their own custom rendering systems, without monkey patching the core:
+<pre>class Mack::Rendering::Pdf &lt; Mack::Rendering::Base
+  def render
+    # do work to render stuff as a PDF
+  end
+end</pre>
+Now add this to the list of available render systems:
+<pre>app_config.mack.rendering_systems &lt;&lt; :pdf</pre>
+You should now be able to do this in your controller:
+<pre>class MyAwesomeController &lt; Mack::Controller::Base
+  def pdf
+    render(:pdf =&gt; "my_pdf_template")
+  end
+end</pre>
+Install:
+<pre>$ sudo gem install mack</pre>
+Changelog:
+<ul>
+	<li>ticket: <a href="http://trac.mackframework.com/ticket/3" target="_blank">3</a> Render url in Controllers/Views</li>
+	<li>ticket: <a href="http://trac.mackframework.com/ticket/5" target="_blank">5</a> Render Extension System.</li>
+</ul>

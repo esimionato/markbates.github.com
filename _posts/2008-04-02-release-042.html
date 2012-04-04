@@ -1,0 +1,88 @@
+---
+layout: post
+title: Release 0.4.2
+tags:
+- filters
+- gems
+- initializer
+- mack
+- News
+- release
+- Releases
+- Updates
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+---
+Another week, another release, eh? That seems to be the M.O. and today doesn't seem to be any difference. This week's release has a few new cool things in it, but overall isn't the sexiest of releases, but definitely one I would highly recommend downloading.
+<h3>Initializers</h3>
+First up, the config/initializers directory. Any .rb files you put in this directory will be loaded up as part of the initialization process
+
+Current Mack initialization load order:
+<ol>
+	<li>Configuration files.</li>
+	<li>Logging.</li>
+	<li>Orm Support, if any.</li>
+	<li>Mack libraries.</li>
+	<li>Routes.</li>
+	<li>Initializers.</li>
+	<li>Gems.</li>
+	<li>Plugins.</li>
+	<li>'app' files.</li>
+	<li>'lib' files.</li>
+	<li>Helpers.</li>
+</ol>
+In a future release you'll be able to re-order this list as part of step #1, but that's a bit of a ways off for right now. Let's focus on what you can do right now.
+<h3>Gems</h3>
+When you create a new Mack app you will find a file called gems.rb in config/initializers. There you can 'require' gems into your application.
+
+Example:
+<pre>require_gems do |gem|
+  gem.add :redgreen, :version =&gt; "1.2.2", :libs =&gt; :redgreen
+  gem.add :termios
+  gem.add :rubyzip, :source =&gt; "http://gems.rubyforge.org"
+end</pre>
+When the application gets loaded up it will call the 'gem' method for each of the gems defined, and with specific versions, if defined. If the optional arrary 'libs' is present it will 'require' each of those files after the 'gem' method has been called.
+
+There are also two rake tasks that help with gems:
+<ul>
+	<li>gems:list - This lists all the gems required by the app.</li>
+	<li>gems:install - This will install all the gems required by the app. If a version is specified the task will attempt to install that specific version. If a source is specified then the source will be used to install the gem.</li>
+</ul>
+<h3>Filters</h3>
+In previous versions of Mack if you had a controller inherit from another controller and you had filters defined in the parent's controller they would not get run on the child controller. This has now been fixed.
+
+Example:
+<pre>class TopController &lt; Mack::Controller::Base
+  before_filter :log
+  protected
+  def log
+    # do some logging here...
+  end
+end
+class BottomController &lt; TopController
+end</pre>
+The 'log' filter method will now be called on actions in the BottomController class.
+
+Changelog:
+<ul>
+	<li>Added config/initializers directory. All files in this directory will be required at start up time.</li>
+</ul>
+<ul>
+	<li>Gems can now be required simply using the initializers/gems.rb file and the require_gems method.</li>
+</ul>
+<ul>
+	<li>Added gems:list and gems:install rake tasks. The gems:list task will list any gems being required for the application. The gems:install task will install all the gems being required for the application.</li>
+</ul>
+<ul>
+	<li>Filters in controllers can now be inherited from parent controller classes.</li>
+</ul>
+<ul>
+	<li>gem: mack_ruby_core_extensions 0.1.5</li>
+</ul>
+<ul>
+	<li>gem: thing 0.7.1</li>
+</ul>
+<pre>$ sudo gem install mack</pre>

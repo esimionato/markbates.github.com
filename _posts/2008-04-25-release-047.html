@@ -1,0 +1,58 @@
+---
+layout: post
+title: Release 0.4.7
+tags:
+- darsono sutedja
+- data mapper
+- file uploads
+- General
+- genosaurus
+- mack
+- release
+- Releases
+- thin
+- Updates
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+---
+0.4.7 is a MUST have release. It fixes a few good bugs, like the ability to upload files now works! Plus it introduces a few nice little goodies.
+
+File uploads are now pretty easy to do. There's a new Mack::Request::UploadedFile that helps to wrap the Hash that Rack gives you when you upload a file. Here's a simple example of it being used:
+<pre>class UploadsController &lt; Mack::Controller::Base
+Â  def create
+Â    @my_new_file = request.file(:my_new_file)
+Â    @my_new_file.save_to([MACK_PUBLIC, "uploaded_files", @my_new_file.file_name])
+Â  end
+end</pre>
+That's it! That's all you need to upload a file! I'm going to add file uploads to the blog demo over the next few days.
+
+You can now do 'namespaced' routes, such as Admin::UserController. You can very simply map them in your routes.rb as:
+<pre>r.resource "admin/users"</pre>
+There's now a new rake task, generator:list, that shows all the generators available to your app.
+
+Darsono Sutedja gets the prize for being the first person, other than myself, to contribute to Mack. Thanks a ton Darsono! It's much appreciated.
+
+All of the generators now use the Genosaurus generator system. Not really that exciting, but it makes for a nice, cleaner code base.
+
+There's a few other things in there as well. The changelog below has a few more things. Enjoy!
+
+Changelog:
+<ul>
+	<li>Added Mack::Request::UploadFile class to make dealing with file uploads easy.</li>
+	<li>Fixed bug where if a controller didn't exist it wasn't checking the public directory.</li>
+	<li>Generated DataMapper models no longer extend DataMapper::Base, but rather 'include DataMapper::Persistence'. This corresponds to the 0.9.0 upcoming release of DataMapper.</li>
+	<li>Fixed a bug in request.params that was making file uploads into strings.</li>
+	<li>Namespaced resourced routes, such as Admin::UserController, now work.</li>
+	<li>Added rake generator:list task to list all the available generators.</li>
+	<li>scaffold generator now creates a stub functional test.</li>
+	<li>model generator now creates a stub unit test.</li>
+	<li>Rake tasks in plugins now show up in the Rake tasks list.</li>
+	<li>All generators, including the 'mack' binary are now using Genosaurus.</li>
+	<li>[dsutedja] initializer will load MACK_APP/controllers/default_controller.rb if it exists</li>
+	<li>[dsutedja] added link_image_to and image_tag to html helper.</li>
+	<li>gem: thin 0.8.1</li>
+	<li>gem: genosaurus 1.1.1</li>
+</ul>

@@ -1,0 +1,81 @@
+---
+layout: post
+title: Release 0.8.1
+tags:
+- configatron
+- data mapper
+- extlib
+- General
+- jabber
+- mack
+- merb
+- nested resources
+- pagination
+- portlet
+- portlets
+- rails
+- Releases
+- routes
+- Updates
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+---
+I know with each release I say how excited I am by this release, but that's usually because with each release there's some great new feature that makes me either proud to have developed it, or to proud to be associated with it. Mack 0.8.1 is definitely no exception.
+
+Before I get into what has to be my favorite feature since the distributed features of 0.7.0, and quite possibly my favorite feature in Mack today, let's talk about a few of the other features in this release.
+<h3>More Routing Enhancements</h3>
+There are a few great new features in the routing system in this release. The first off is a real crowd favorite, Nested Resources. Just like Rails you can now nest resources in Mack.
+
+<a href="http://www.mackery.com/routing/nested_resources">http://www.mackery.com/routing/nested_resources</a>
+
+In Mack 0.8.0 we introduced the ability to put host information in the routes file. This would be used to match the host when matching a route as well as building the url for that route when using the url helpers. This made dealing with subdomains very easier. Well, to really give everyone that subdomain fu everybody loves, we've added the ability to put embedded parameters in the host parameter in routes. It's pretty dang cool, let me tell you. Checkout these examples:
+
+<a href="http://www.mackery.com/routing/misc">http://www.mackery.com/routing/misc</a>
+<h3>Pagination API</h3>
+There is now a pagination API that's part of the mack-orm API. The first implementation of this in the mack-data_mapper package. At its heart it's extremely easily to implement for new ORMs, one method, and using it is just as easy. There will be a write up on using the API in the forth coming days.
+<h3>Jabber Support</h3>
+The mack-notifier package can now send notifications using the Jabber protocol.
+<h2>!!Portlets!!</h2>
+Portlets are what components in Rails should've been and they're what slices in Merb should be. Portlets are a way off packaging a full Mack application into a Ruby Gem so they can easily be shared and used in other Mack applications. As you're about to see, this simple page is all the information you need to know about developing, testing, packaging, and using Portlets.
+
+Portlets encapsulate a whole Mack application, from controllers to views to models to configuration settings to your images, stylesheets and javascripts. This makes it possible to develop extremely rich applications and share them with other Mack applications.
+
+<a href="http://www.mackery.com/portlets/developing">http://www.mackery.com/portlets/developing</a>
+<a href="http://www.mackery.com/portlets/testing">http://www.mackery.com/portlets/testing</a>
+<a href="http://www.mackery.com/portlets/packaging">http://www.mackery.com/portlets/packaging</a>
+<a href="http://www.mackery.com/portlets/using">http://www.mackery.com/portlets/using</a>
+<h3>Bug Fixes and Minor Feature Updates</h3>
+As always there are great bug fixes and feature updates. Below is the changelog that outlines those improvements.
+
+Changelog:
+<ul>
+	<li>[#217] Fixed rake mack:dump:routes throws errors</li>
+	<li>[#216] Added ability to turn off view caching in distributed app</li>
+	<li>[#215] Asset path lookup flow update</li>
+	<li>[#213] Fixed the params method should be case insensitive</li>
+	<li>[#211] Added a pagination API to mack-data_mapper</li>
+	<li>[#210] Added a pagination API to mack-orm</li>
+	<li>[#209] inline form built by link_to should include authenticity token</li>
+	<li>[#208] Added support for DataMapper repository context per request</li>
+	<li>[#207] Fixed session cookie not being deleted properly</li>
+	<li>[#206] Portlet now have access to its base_path</li>
+	<li>[#205] Fixed testing of nested parameters and file uploads breaks</li>
+	<li>[#204] Resource routes can now take options when being defined.</li>
+	<li>[#203] Updated distributed: view_cache to include Mack::ViewHelpers instead of Mack::ViewHelpers::LinkHelpers</li>
+	<li>[#200] INCOMPATIBILITY NOTICE: mack-notifier configatron namespaces have changed from *_settings to * (e.g. smtp_settings to smtp)</li>
+	<li>[#198] Added Embedded parameters in 'host' for Routes</li>
+	<li>[#196] Extlib 0.9.8 support</li>
+	<li>[#195] DataMapper 0.9.6 support</li>
+	<li>[#193] Portlet Support</li>
+	<li>[#192] mack-localization now supports portlet</li>
+	<li>[#191] Asset-Packager support for Portlet</li>
+	<li>[#143] Nested resources in Routes</li>
+	<li>[#134] Form elements are now 'errorfied'.</li>
+	<li>[#131] Date/Time select boxes can now be easily re-arranged.</li>
+	<li>[#78] Jabber support</li>
+	<li>gem: configatron 2.1.5</li>
+	<li>gem: extlib 0.9.8</li>
+</ul>
