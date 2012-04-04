@@ -1,0 +1,14 @@
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+.sidebar-nav {
+  padding: 9px 0;
+}
+
+.tag {
+  background-color: #3F9FD9;
+  color: #fff;
+  padding: 3px;
+  margin-bottom: 2px;
+}
