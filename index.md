@@ -1,5 +1,6 @@
 ---
 layout: default
+title: Mark Bates
 ---
 {% include JB/setup %}
 
