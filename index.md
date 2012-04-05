@@ -8,5 +8,8 @@ title: Mark Bates
 
 <div class="page-header">
   <h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
+  {% if post.date %}
+    <h6>{{ post.date | date_to_long_string }}</h6>
+  {% endif %}
 </div>
 {{ post.content }} 

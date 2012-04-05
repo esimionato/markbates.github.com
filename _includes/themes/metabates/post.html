@@ -1,10 +1,33 @@
 <div class="page-header">
   <h1>{{ page.title }}</h1>
+  {% if page.date %}
+    <h6>{{ page.date | date_to_long_string }}</h6>
+  {% endif %}
 </div>
 
 <div class="row">
   <div class="span">
     {{ content }}
+    <hr>
+    <div class='tag_box'>
+      {% if page.tags %}
+        {% unless page.tags == empty %}
+          <h5>Tags</h5>
+          {% assign tags_list = page.tags %}
+          {% if tags_list.first[0] == null %}
+            {% for tag in tags_list %} 
+              <a href="{{ BASE_PATH }}{{ site.JB.tags_path }}#{{ tag }}-ref" class="tag">{{ tag }}</a>
+            {% endfor %}
+          {% else %}
+            {% for tag in tags_list %} 
+              <a href="{{ BASE_PATH }}{{ site.JB.tags_path }}#{{ tag[0] }}-ref" class="tag">{{ tag[0] }}</a>
+            {% endfor %}
+          {% endif %}
+        {% endunless %} 
+        <hr />
+      {% endif %}
+    </div>
+    <hr>
     {% include custom/sharing %}
     <hr>
     <div class="pagination">

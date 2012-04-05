@@ -51,28 +51,12 @@
           {{ content }}
         </div><!--/span-->
         <div class="span3">
+          <a href="/books.html" class="thumbnail">
+            <img src="/assets/images/2012/02/cover_300.png" />
+          </a>
+          <hr />
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              {% if page.date %}
-                <li class="nav-header">Published</li>
-                <li>{{ page.date | date_to_long_string }}</li>
-              {% endif %}
-              {% if page.tags %}
-                {% unless page.tags == empty %}
-                  <li class="nav-header">Tags</li>
-                  {% assign tags_list = page.tags %}
-                  {% if tags_list.first[0] == null %}
-                    {% for tag in tags_list %} 
-                      <a href="{{ BASE_PATH }}{{ site.JB.tags_path }}#{{ tag }}-ref" class="">{{ tag }}</a>
-                    {% endfor %}
-                  {% else %}
-                    {% for tag in tags_list %} 
-                      <a href="{{ BASE_PATH }}{{ site.JB.tags_path }}#{{ tag[0] }}-ref" class="">{{ tag[0] }}</a>
-                    {% endfor %}
-                  {% endif %}
-                {% endunless %} 
-                <hr />
-              {% endif %}
 
               <li class="nav-header">Latest Posts</li>
               {% for post in site.posts limit: 5 %}

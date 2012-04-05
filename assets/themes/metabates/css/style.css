@@ -6,15 +6,40 @@ body {
   padding: 9px 0;
 }
 
-.tag {
+.tag_box h5 {
+  margin-bottom: 10px;
+}
+
+.tag_box .tag {
   background-color: #3F9FD9;
   color: #fff;
   padding: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
   margin-bottom: 2px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.tag_box .tag:hover {
+  background-color: #DDD;
+  text-decoration: none;
+  color: #3F9FD9;
 }
 
 .addthis_toolbox {
   margin-top: 20px;
+}
+
+.img-left {
+  float: left; 
+  margin-right: 10px;
+}
+
+.img-right {
+  float: right; 
+  margin-left: 10px;
 }
 
 /* syntax highlighting */
