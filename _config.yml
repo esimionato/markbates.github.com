@@ -98,7 +98,12 @@ JB :
   # Set 'provider' to false to turn sharing off globally.
   #
   sharing :
-    provider : true
+    provider : custom
+    addthis:
+      enable_tweet_button: true
+      enable_fblike_button: true
+      enable_gplus_button: true
+      enable_addthis_button: true
     
   # Settings for all other include helpers can be defined by creating 
   # a hash with key named for the given helper. ex:

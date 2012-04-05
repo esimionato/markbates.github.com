@@ -12,3 +12,7 @@ body {
   padding: 3px;
   margin-bottom: 2px;
 }
+
+.addthis_toolbox {
+  margin-top: 20px;
+}
