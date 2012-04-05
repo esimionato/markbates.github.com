@@ -13,22 +13,6 @@ WordPress worked well for me for years, but I have to say that I never enjoyed t
 
 Jekyll let's me write my blog entries in my favorite local text editor. I can preview my blog, locally, which is great if you want to make a sweeping change to the whole thing. When I'm done writing I can do a <code>git push</code> and the site now has all the new content.
 
-{% highlight javascript %}
-  var foo = function() {
-    
-  }
-{% endhighlight %}
+I know that I haven't been that great over the last few months at keeping this blog up to date. Part of that was due to writing a new book, <a href="http://books.markbates.com">Programming in CoffeeScript</a>, and the other because I just didn't like writing in WordPress. I'm hoping that now that I've got a bit more of a "hacker" friendly way of blogging, that I get back into the habit of blogging more often.
 
-Strip steak drumstick t-bone jerky beef ribs. Drumstick ground round beef sausage, bacon strip steak t-bone jerky corned beef hamburger ball tip tenderloin. Shank turkey ham cow, shankle tail hamburger. Beef ribs sirloin ribeye, short loin venison strip steak t-bone. Tri-tip short ribs pork, shoulder short loin pancetta strip steak venison tail spare ribs cow sausage ham hock shankle. Pancetta ball tip pork chop chicken drumstick, ground round meatball strip steak. Turkey spare ribs meatball tongue, hamburger shankle jerky ball tip pork belly pork chop.
-
-{% highlight ruby %}
-class Foo < ActiveRecord::Base
-
-  def do_something
-    %w{a b c}.each do |x|
-      puts "#{x}"
-    end
-  end
-
-end
-{% endhighlight %}
+Here's to the hopes of happy blogging!
