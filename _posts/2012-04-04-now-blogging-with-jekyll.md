@@ -19,6 +19,7 @@ Jekyll let's me write my blog entries in my favorite local text editor. I can pr
   }
 {% endhighlight %}
 
+
 {% highlight ruby %}
 class Foo < ActiveRecord::Base
 
