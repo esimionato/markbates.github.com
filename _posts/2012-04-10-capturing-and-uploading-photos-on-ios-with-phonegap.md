@@ -35,9 +35,11 @@ capture: function(sourceType) {
 // if photo is captured successfully, then upload to server:
 onCaptureSuccess: function(imageURI) {
   var fail, ft, options, params, win;
-  win: function(r) {
+  // callback for when the photo has been successfully uploaded:
+  success: function(response) {
     alert("Your photo has been uploaded!");
   };
+  // callback if the photo fails to upload successfully.
   fail: function(error) {
     alert("An error has occurred: Code = " + error.code);
   };
@@ -51,7 +53,7 @@ onCaptureSuccess: function(imageURI) {
   };
   options.params = params;
   ft = new FileTransfer();
-  ft.upload(imageURI, 'http://example.com/path/to/service', win, fail, options);
+  ft.upload(imageURI, 'http://example.com/path/to/service', success, fail, options);
 };
 
 // there was an error capturing the photo:
@@ -74,3 +76,19 @@ Let's look at the <code>capture</code> function first. The <code>navigator.camer
 * __correctOrientation__: This last option is undocumented, but also _incredibly_ important! By default <code>correctOrientation</code> is set to <code>false</code>, because of this the photo that is uploaded won't necessarily have the orientation that the user who took the photo intended. This is because the meta data for such things as orientation is store on the device, and not in the phone. By setting this to <code>true</code>, the photo will be adjusted to the correct orientation when it is passed into the <code>onCaptureSuccess</code> function.
 
 So those are the most important options that need to be set when calling <code>navigator.camera.getPicture</code>.
+
+### onCaptureSuccess:
+
+When a photo is successfully captured, via the <code>capture</code> function, the <code>onCaptureSuccess</code> function will be called. This function will be passed a path, <code>imageURI</code> to the photo on disk.
+
+PhoneGap has an object that is specifically designed for transfers files from the phone to a web service somewhere. This object is called, <code>FileTransfer</code>. This object exposes a function called, <code>upload</code>, that will send an HTTP POST to the web service and properly encode the photo (we can send file we want, for this example it's a photo) for transport.
+
+The <code>upload</code> function takes five arguments. We can see this in action near the bottom of the <code>onCaptureSuccess</code> function.
+
+The first argument is the path to the file on disk, the <code>imageURI</code> argument that the <code>onCaptureSuccess</code> function received. 
+
+The second argument is the URL of the web service you wish to post the file to.
+
+The third argument is a callback that will be executed when the file has been successfully uploaded to the server. This is the <code>success</code> function we defined inside of <code>onCaptureSuccess</code>.
+
+The fourth argument is a callback that will be executed should the file fail to upload successfully to the server. This is the <code>fail</code> function we defined inside of <code>onCaptureSuccess</code>.
