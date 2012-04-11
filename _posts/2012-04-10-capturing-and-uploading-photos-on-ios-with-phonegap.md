@@ -44,8 +44,11 @@ onCaptureSuccess: function(imageURI) {
     alert("An error has occurred: Code = " + error.code);
   };
   options = new FileUploadOptions();
+  // parameter name of file:
   options.fileKey = "product[image]";
+  // name of the file:
   options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+  // mime type:
   options.mimeType = "text/plain";
   params = {
     val1: "some value",
@@ -85,10 +88,12 @@ PhoneGap has an object that is specifically designed for transfers files from th
 
 The <code>upload</code> function takes five arguments. We can see this in action near the bottom of the <code>onCaptureSuccess</code> function.
 
-The first argument is the path to the file on disk, the <code>imageURI</code> argument that the <code>onCaptureSuccess</code> function received. 
+* The first argument is the path to the file on disk, the <code>imageURI</code> argument that the <code>onCaptureSuccess</code> function received. 
 
-The second argument is the URL of the web service you wish to post the file to.
+* The second argument is the URL of the web service you wish to post the file to.
 
-The third argument is a callback that will be executed when the file has been successfully uploaded to the server. This is the <code>success</code> function we defined inside of <code>onCaptureSuccess</code>.
+* The third argument is a callback that will be executed when the file has been successfully uploaded to the server. This is the <code>success</code> function we defined inside of <code>onCaptureSuccess</code>.
 
-The fourth argument is a callback that will be executed should the file fail to upload successfully to the server. This is the <code>fail</code> function we defined inside of <code>onCaptureSuccess</code>.
+* The fourth argument is a callback that will be executed should the file fail to upload successfully to the server. This is the <code>fail</code> function we defined inside of <code>onCaptureSuccess</code>.
+
+* The fifth argument is an object containing any extra parameters you want to send to the server.
