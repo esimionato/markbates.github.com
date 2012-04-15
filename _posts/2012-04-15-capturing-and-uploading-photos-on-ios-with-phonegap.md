@@ -7,7 +7,11 @@ tags: [phonegap, ios, iphone, javascript, cordova]
 ---
 {% include JB/setup %}
 
-Lately I've been doing a lot of work with <a href="http://docs.phonegap.com" target="_blank">PhoneGap</a>, now known as Cordova. PhoneGap lets you write "native" iOS, Android, Blackberry, etc... applications using standard web technologies, such as HTML, CSS, and JavaScript. They also give you a JavaScript API to access parts of the device, such as the camera, the accelerometer, the compass, etc... In this article I would like to take a quick look at how to take a new picture, or use an existing library photo, and how to upload it to a webserver somewhere.
+<img src="/assets/images/2012/04/15/phonegaplogo.png" class='img-left' style="width: 120px; height: 120px;"/>
+
+Lately I've been doing a lot of work with <a href="http://docs.phonegap.com" target="_blank">PhoneGap</a>, now known as Cordova. PhoneGap lets you write "native" iOS, Android, Blackberry, etc... applications using standard web technologies, such as HTML, CSS, and JavaScript. They also give you a JavaScript API to access parts of the device, such as the camera, the accelerometer, the compass, etc... 
+
+In this article I would like to take a quick look at how to take a new picture, or use an existing library photo, and how to upload it to a webserver somewhere. This is one of the most common things to do in a mobile application, and as you're about to see, PhoneGap makes this, commonly painful task, pretty simple.
 
 ### The Code:
 
@@ -45,7 +49,7 @@ onCaptureSuccess: function(imageURI) {
   };
   options = new FileUploadOptions();
   // parameter name of file:
-  options.fileKey = "product[image]";
+  options.fileKey = "my_image";
   // name of the file:
   options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
   // mime type:
@@ -96,4 +100,18 @@ The <code>upload</code> function takes five arguments. We can see this in action
 
 * The fourth argument is a callback that will be executed should the file fail to upload successfully to the server. This is the <code>fail</code> function we defined inside of <code>onCaptureSuccess</code>.
 
-* The fifth argument is an object containing any extra parameters you want to send to the server.
+* The fifth argument is an object containing any extra parameters you want to send to the server. Let's talk about that a bit more.
+
+### FileUploadOptions:
+
+PhoneGap provides a <code>FileUploadOptions</code> object that convienently sets a few helpful defaults for uploading files to a server, include the mime-type, data chunking, etc... There are three of these parameters that are important to set your own values for.
+
+* __fileKey__: This will be the name of the request parameter that is sent to the server. The default value is <code>file</code>.
+
+* __fileName__: This is the name you want the file to be called when the server recieves it. The default is <code>image.jpg</code>.
+
+* __params__: This an object containing any additional parameters you want sent to the server. Pretty simple.
+
+### The End
+
+And with all of that you have successfully uploaded a photo from and iOS device using PhoneGap. It might seem a little daunting, but actually it pretty and straightforward. Honestly, it is a lot simplier than doing it in Objective-C.

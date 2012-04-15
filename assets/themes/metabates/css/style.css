@@ -42,6 +42,10 @@ body {
   margin-left: 10px;
 }
 
+h3 {
+  clear: both;
+}
+
 /* syntax highlighting */
 .highlight  { background: #ffffff; }
 .highlight .c { color: #999988; font-style: italic } /* Comment */
