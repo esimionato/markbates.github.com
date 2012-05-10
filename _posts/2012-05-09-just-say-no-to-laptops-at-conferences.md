@@ -2,8 +2,8 @@
 layout: post
 title: "Just Say No To Laptops... At Conferences"
 description: ""
-category: 
-tags: []
+category: General
+tags: [conferences, laptops]
 ---
 {% include JB/setup %}
 
